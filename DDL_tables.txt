@@ -1,0 +1,380 @@
+SQL> CREATE TABLE Dept(Name varchar2(25),ID number(7));
+CREATE TABLE Dept(Name varchar2(25),ID number(7))
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> CREATE TABLE Depart(Name varchar2(25),ID number(7));
+
+Table created.
+
+SQL> desc depart;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NAME                                               VARCHAR2(25)
+ ID                                                 NUMBER(7)
+
+SQL> create table empl(emp_id number(7),last_name varchar2(25),first_name varchar2(25),dept_id number(7));
+
+Table created.
+
+SQL> desc empl;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID                                             NUMBER(7)
+ LAST_NAME                                          VARCHAR2(25)
+ FIRST_NAME                                         VARCHAR2(25)
+ DEPT_ID                                            NUMBER(7)
+
+SQL> INSERT INTO depart
+  2  SELECT department_name,department_id
+  3  FROM departments;
+
+27 rows created.
+
+SQL> select * from depart;
+
+NAME                              ID                                            
+------------------------- ----------                                            
+Administration                    10                                            
+Marketing                         20                                            
+Purchasing                        30                                            
+Human Resources                   40                                            
+Shipping                          50                                            
+IT                                60                                            
+Public Relations                  70                                            
+Sales                             80                                            
+Executive                         90                                            
+Finance                          100                                            
+Accounting                       110                                            
+
+NAME                              ID                                            
+------------------------- ----------                                            
+Treasury                         120                                            
+Corporate Tax                    130                                            
+Control And Credit               140                                            
+Shareholder Services             150                                            
+Benefits                         160                                            
+Manufacturing                    170                                            
+Construction                     180                                            
+Contracting                      190                                            
+Operations                       200                                            
+IT Support                       210                                            
+NOC                              220                                            
+
+NAME                              ID                                            
+------------------------- ----------                                            
+IT Helpdesk                      230                                            
+Government Sales                 240                                            
+Retail Sales                     250                                            
+Recruiting                       260                                            
+Payroll                          270                                            
+
+27 rows selected.
+
+SQL> create table empl2
+  2     as select employee_id,first_name,last_name,salary,
+  3     department_id dept_id
+  4     from employees;
+
+Table created.
+
+SQL> CREATE VIEW EMPLOYEES_VU
+  2    AS SELECT EMPLOYEE_ID,LAST_NAME,DEPARTMENT_ID
+  3    FROM EMPLOYEES;
+CREATE VIEW EMPLOYEES_VU
+            *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> CREATE VIEW EMPLOYEES_View
+  2    AS SELECT EMPLOYEE_ID,LAST_NAME,DEPARTMENT_ID
+  3     from employees;
+
+View created.
+
+SQL> select * from employees_view;
+
+EMPLOYEE_ID LAST_NAME                 DEPARTMENT_ID                             
+----------- ------------------------- -------------                             
+        100 King                                 90                             
+        101 Kochhar                              90                             
+        102 De Haan                              90                             
+        103 Hunold                               60                             
+        104 Ernst                                60                             
+        105 Austin                               60                             
+        106 Pataballa                            60                             
+        107 Lorentz                              60                             
+        108 Greenberg                           100                             
+        109 Faviet                              100                             
+        110 Chen                                100                             
+
+EMPLOYEE_ID LAST_NAME                 DEPARTMENT_ID                             
+----------- ------------------------- -------------                             
+        111 Sciarra                             100                             
+        112 Urman                               100                             
+        113 Popp                                100                             
+        114 Raphaely                             30                             
+        115 Khoo                                 30                             
+        116 Baida                                30                             
+        117 Tobias                               30                             
+        118 Himuro                               30                             
+        119 Colmenares                           30                             
+        120 Weiss                                50                             
+        121 Fripp                                50                             
+
+EMPLOYEE_ID LAST_NAME                 DEPARTMENT_ID                             
+----------- ------------------------- -------------                             
+        122 Kaufling                             50                             
+        123 Vollman                              50                             
+        124 Mourgos                              50                             
+        125 Nayer                                50                             
+        126 Mikkilineni                          50                             
+        127 Landry                               50                             
+        128 Markle                               50                             
+        129 Bissot                               50                             
+        130 Atkinson                             50                             
+        131 Marlow                               50                             
+        132 Olson                                50                             
+
+EMPLOYEE_ID LAST_NAME                 DEPARTMENT_ID                             
+----------- ------------------------- -------------                             
+        133 Mallin                               50                             
+        134 Rogers                               50                             
+        135 Gee                                  50                             
+        136 Philtanker                           50                             
+        137 Ladwig                               50                             
+        138 Stiles                               50                             
+        139 Seo                                  50                             
+        140 Patel                                50                             
+        141 Rajs                                 50                             
+        142 Davies                               50                             
+        143 Matos                                50                             
+
+EMPLOYEE_ID LAST_NAME                 DEPARTMENT_ID                             
+----------- ------------------------- -------------                             
+        144 Vargas                               50                             
+        145 Russell                              80                             
+        146 Partners                             80                             
+        147 Errazuriz                            80                             
+        148 Cambrault                            80                             
+        149 Zlotkey                              80                             
+        150 Tucker                               80                             
+        151 Bernstein                            80                             
+        152 Hall                                 80                             
+        153 Olsen                                80                             
+        154 Cambrault                            80                             
+
+EMPLOYEE_ID LAST_NAME                 DEPARTMENT_ID                             
+----------- ------------------------- -------------                             
+        155 Tuvault                              80                             
+        156 King                                 80                             
+        157 Sully                                80                             
+        158 McEwen                               80                             
+        159 Smith                                80                             
+        160 Doran                                80                             
+        161 Sewall                               80                             
+        162 Vishney                              80                             
+        163 Greene                               80                             
+        164 Marvins                              80                             
+        165 Lee                                  80                             
+
+EMPLOYEE_ID LAST_NAME                 DEPARTMENT_ID                             
+----------- ------------------------- -------------                             
+        166 Ande                                 80                             
+        167 Banda                                80                             
+        168 Ozer                                 80                             
+        169 Bloom                                80                             
+        170 Fox                                  80                             
+        171 Smith                                80                             
+        172 Bates                                80                             
+        173 Kumar                                80                             
+        174 Abel                                 80                             
+        175 Hutton                               80                             
+        176 Taylor                               80                             
+
+EMPLOYEE_ID LAST_NAME                 DEPARTMENT_ID                             
+----------- ------------------------- -------------                             
+        177 Livingston                           80                             
+        178 Grant                                                               
+        179 Johnson                              80                             
+        180 Taylor                               50                             
+        181 Fleaur                               50                             
+        182 Sullivan                             50                             
+        183 Geoni                                50                             
+        184 Sarchand                             50                             
+        185 Bull                                 50                             
+        186 Dellinger                            50                             
+        187 Cabrio                               50                             
+
+EMPLOYEE_ID LAST_NAME                 DEPARTMENT_ID                             
+----------- ------------------------- -------------                             
+        188 Chung                                50                             
+        189 Dilly                                50                             
+        190 Gates                                50                             
+        191 Perkins                              50                             
+        192 Bell                                 50                             
+        193 Everett                              50                             
+        194 McCain                               50                             
+        195 Jones                                50                             
+        196 Walsh                                50                             
+        197 Feeney                               50                             
+        198 OConnell                             50                             
+
+EMPLOYEE_ID LAST_NAME                 DEPARTMENT_ID                             
+----------- ------------------------- -------------                             
+        199 Grant                                50                             
+        200 Whalen                               10                             
+        201 Hartstein                            20                             
+        202 Fay                                  20                             
+        203 Mavris                               40                             
+        204 Baer                                 70                             
+        205 Higgins                             110                             
+        206 Gietz                               110                             
+
+107 rows selected.
+
+SQL> select last_name EMPLOYEE,department_id from employees_view;
+
+EMPLOYEE                  DEPARTMENT_ID                                         
+------------------------- -------------                                         
+King                                 90                                         
+Kochhar                              90                                         
+De Haan                              90                                         
+Hunold                               60                                         
+Ernst                                60                                         
+Austin                               60                                         
+Pataballa                            60                                         
+Lorentz                              60                                         
+Greenberg                           100                                         
+Faviet                              100                                         
+Chen                                100                                         
+
+EMPLOYEE                  DEPARTMENT_ID                                         
+------------------------- -------------                                         
+Sciarra                             100                                         
+Urman                               100                                         
+Popp                                100                                         
+Raphaely                             30                                         
+Khoo                                 30                                         
+Baida                                30                                         
+Tobias                               30                                         
+Himuro                               30                                         
+Colmenares                           30                                         
+Weiss                                50                                         
+Fripp                                50                                         
+
+EMPLOYEE                  DEPARTMENT_ID                                         
+------------------------- -------------                                         
+Kaufling                             50                                         
+Vollman                              50                                         
+Mourgos                              50                                         
+Nayer                                50                                         
+Mikkilineni                          50                                         
+Landry                               50                                         
+Markle                               50                                         
+Bissot                               50                                         
+Atkinson                             50                                         
+Marlow                               50                                         
+Olson                                50                                         
+
+EMPLOYEE                  DEPARTMENT_ID                                         
+------------------------- -------------                                         
+Mallin                               50                                         
+Rogers                               50                                         
+Gee                                  50                                         
+Philtanker                           50                                         
+Ladwig                               50                                         
+Stiles                               50                                         
+Seo                                  50                                         
+Patel                                50                                         
+Rajs                                 50                                         
+Davies                               50                                         
+Matos                                50                                         
+
+EMPLOYEE                  DEPARTMENT_ID                                         
+------------------------- -------------                                         
+Vargas                               50                                         
+Russell                              80                                         
+Partners                             80                                         
+Errazuriz                            80                                         
+Cambrault                            80                                         
+Zlotkey                              80                                         
+Tucker                               80                                         
+Bernstein                            80                                         
+Hall                                 80                                         
+Olsen                                80                                         
+Cambrault                            80                                         
+
+EMPLOYEE                  DEPARTMENT_ID                                         
+------------------------- -------------                                         
+Tuvault                              80                                         
+King                                 80                                         
+Sully                                80                                         
+McEwen                               80                                         
+Smith                                80                                         
+Doran                                80                                         
+Sewall                               80                                         
+Vishney                              80                                         
+Greene                               80                                         
+Marvins                              80                                         
+Lee                                  80                                         
+
+EMPLOYEE                  DEPARTMENT_ID                                         
+------------------------- -------------                                         
+Ande                                 80                                         
+Banda                                80                                         
+Ozer                                 80                                         
+Bloom                                80                                         
+Fox                                  80                                         
+Smith                                80                                         
+Bates                                80                                         
+Kumar                                80                                         
+Abel                                 80                                         
+Hutton                               80                                         
+Taylor                               80                                         
+
+EMPLOYEE                  DEPARTMENT_ID                                         
+------------------------- -------------                                         
+Livingston                           80                                         
+Grant                                                                           
+Johnson                              80                                         
+Taylor                               50                                         
+Fleaur                               50                                         
+Sullivan                             50                                         
+Geoni                                50                                         
+Sarchand                             50                                         
+Bull                                 50                                         
+Dellinger                            50                                         
+Cabrio                               50                                         
+
+EMPLOYEE                  DEPARTMENT_ID                                         
+------------------------- -------------                                         
+Chung                                50                                         
+Dilly                                50                                         
+Gates                                50                                         
+Perkins                              50                                         
+Bell                                 50                                         
+Everett                              50                                         
+McCain                               50                                         
+Jones                                50                                         
+Walsh                                50                                         
+Feeney                               50                                         
+OConnell                             50                                         
+
+EMPLOYEE                  DEPARTMENT_ID                                         
+------------------------- -------------                                         
+Grant                                50                                         
+Whalen                               10                                         
+Hartstein                            20                                         
+Fay                                  20                                         
+Mavris                               40                                         
+Baer                                 70                                         
+Higgins                             110                                         
+Gietz                               110                                         
+
+107 rows selected.
+
+SQL> spool off
