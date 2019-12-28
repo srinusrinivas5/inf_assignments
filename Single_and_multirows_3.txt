@@ -1,0 +1,49 @@
+SQL> select max(salary) MAXIMUM,min(salary) MINIMUM,round(avg(salary),0) AVERAGE,sum(salary) SUM from employees;
+
+   MAXIMUM    MINIMUM    AVERAGE        SUM                                     
+---------- ---------- ---------- ----------                                     
+     24000       2100       6462     691416                                     
+
+SQL> select max(salary) MAXIMUM,min(salary) MINIMUM,round(avg(salary),0) AVERAGE,sum(salary) SUM ,job_id from employees
+  2   group by job_id;
+
+   MAXIMUM    MINIMUM    AVERAGE        SUM JOB_ID                              
+---------- ---------- ---------- ---------- ----------                          
+      9000       4200       5760      28800 IT_PROG                             
+     12008      12008      12008      12008 AC_MGR                              
+      8300       8300       8300       8300 AC_ACCOUNT                          
+      8200       5800       7280      36400 ST_MAN                              
+     11000      11000      11000      11000 PU_MAN                              
+      4400       4400       4400       4400 AD_ASST                             
+     17000      17000      17000      34000 AD_VP                               
+      4200       2500       3215      64300 SH_CLERK                            
+      9000       6900       7920      39600 FI_ACCOUNT                          
+     12008      12008      12008      12008 FI_MGR                              
+      3100       2500       2780      13900 PU_CLERK                            
+
+   MAXIMUM    MINIMUM    AVERAGE        SUM JOB_ID                              
+---------- ---------- ---------- ---------- ----------                          
+     14000      10500      12200      61000 SA_MAN                              
+     13000      13000      13000      13000 MK_MAN                              
+     10000      10000      10000      10000 PR_REP                              
+     24000      24000      24000      24000 AD_PRES                             
+     11500       6100       8350     250500 SA_REP                              
+      6000       6000       6000       6000 MK_REP                              
+      3600       2100       2785      55700 ST_CLERK                            
+      6500       6500       6500       6500 HR_REP                              
+
+19 rows selected.
+
+SQL> select count(job_id) from employees;
+
+COUNT(JOB_ID)                                                                   
+-------------                                                                   
+          107                                                                   
+
+SQL> select count(job_id) from employees where job_id='IT_PROG';
+
+COUNT(JOB_ID)                                                                   
+-------------                                                                   
+            5                                                                   
+
+SQL> spool off
